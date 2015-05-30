@@ -17,7 +17,7 @@ class PartidoForm(forms.ModelForm):
 class PartidoChangeListForm(forms.ModelForm):
     class Meta:
         model = Partido
-        fields = ('ganador',)
+        fields = '__all__'
 
     def __init__(self, *args, **kwargs):
         super(PartidoChangeListForm, self).__init__(*args, **kwargs)
