@@ -12,3 +12,14 @@ class PartidoForm(forms.ModelForm):
         super(PartidoForm, self).__init__(*args, **kwargs)
         # Solo podemos selecionar un ganador que sea el local o el visitante
         self.fields['ganador'].queryset = Equipo.objects.filter(id__in=(self.instance.local_id, self.instance.visitante_id))
+
+
+class PartidoChangeListForm(forms.ModelForm):
+    class Meta:
+        model = Partido
+        fields = ('ganador',)
+
+    def __init__(self, *args, **kwargs):
+        super(PartidoChangeListForm, self).__init__(*args, **kwargs)
+        if self.instance:
+            self.fields['ganador'].queryset = Equipo.objects.filter(id__in=(self.instance.local_id, self.instance.visitante_id))
